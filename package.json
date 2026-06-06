@@ -1,0 +1,13 @@
+{
+  "name": "isur-project",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ISUR full stack launcher",
+  "scripts": {
+    "install:all": "cd backend && npm install && npm run setup:python",
+    "setup": "npm run install:all",
+    "start": "cd backend && npm run start:all",
+    "start:backend": "cd backend && npm start",
+    "start:llm": "cd backend && npm run start:python"
+  }
+}

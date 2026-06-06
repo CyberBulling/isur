@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сравнение объектов недвижимости - ИСУР</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="./images/images/logo1.svg" style="height: 50px; width: auto;" alt="ИСУР Логотип">
+                </div>
+                <div class="logo-text"></div>
+            </div>
+            <nav id="main-nav">
+                <a href="index.html">Главная</a>
+                <a href="about.html">О нас</a>
+                <a href="services.html">Цифровой помощник</a>
+                <a href="analytics.html">Аналитика</a>
+                <a href="calculator.html">Инвест-калькулятор</a>
+                <a href="diffs.html" class="active">Сравнение объектов</a>
+                <a href="contact.html">Контакты</a>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> > <a href="analytics.html">Аналитика</a> > <span>Сравнение объектов</span>
+        </div>
+
+        <div class="page-header">
+            <h1><i class="fas fa-balance-scale"></i> Сравнение объектов недвижимости</h1>
+            <p>Детальное сравнение выбранных жилых объектов по всем параметрам: рейтинги, инфраструктура, транспортная доступность</p>
+        </div>
+        <div class="custom-spoiler">
+                <details class="spoiler-block">
+                    <summary class="spoiler-header">
+                        <span class="spoiler-title"><i class="fas fa-chart-line"></i>Аналитическая справка</span>
+                        <span class="spoiler-icon"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="spoiler-content">
+                        <p><strong>Социальный рейтинг — до 10 баллов. </strong></p>
+                            <p>Учитываются школы и детские сады в радиусе 500 м, медицинские учреждения в радиусе 500 м, парки в радиусе 1 000 м. </p>
+                            <p>Балл уменьшается пропорционально расстоянию: чем дальше объект, тем ниже вклад. </p>
+                            <p>Дополнительно учитывается коэффициент разнообразия инфраструктуры: наличие нескольких типов объектов повышает итоговую оценку.</p>
+<p>⠀</p>
+                            <p><strong>Качество инфраструктуры — до 10 баллов. </strong></p>
+                                <p>Учитываются три коэффициента: аварийность, этажность и возраст здания. </p>
+                            <p>Неаварийный дом получает максимальный вклад по аварийности. </p>
+                            <p>Оптимальная этажность — 3–9 этажей; здания выше 9 этажей теряют примерно 1,67 балла за каждый дополнительный этаж. </p>
+                            <p>Возраст до 5 лет дает максимум, от 5 до 30 лет балл снижается линейно, старше 30 лет — минимальный вклад.</p>
+<p>⠀</p>
+                            <p><strong>Транспортная доступность — до 10 баллов. </strong></p>
+                            <p>Учитываются близость метро, остановки общественного транспорта, расстояние до центра и парковки. </p>
+                            <p>Метро оценивается по расстоянию до ближайшей станции: максимум у станции, ноль примерно после 2,4 км. </p>
+                            <p>Остановки учитываются в радиусе 1 000 м: 5 и более остановок дают максимальный вклад. </p>
+                            <p>Расстояние до центра считается от Кремля: до 2 км максимум, от 2 до 18 км балл снижается линейно.</p>
+                    </div>
+                </details>
+            </div>
+        <div class="comparison-container">
+            <!-- Секция выбранных объектов -->
+            <div class="selected-buildings" id="selected-buildings">
+                <div class="selected-title">
+                    <h2>
+                        <i class="fas fa-home"></i> Выбранные объекты 
+                        <span class="badge" id="selected-count">0</span>
+                    </h2>
+                    <div class="selected-info">
+                        <span class="limit-info" style="font-size: 14px; color: var(--gray); margin-right: 15px;">
+                            Лимит: <strong id="limit-count">5</strong> объектов
+                        </span>
+                        <button class="clear-all-btn" id="clear-all-btn">
+                            <i class="fas fa-trash"></i> Очистить все
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="buildings-list" class="buildings-grid">
+                    <!-- Сюда будут добавляться карточки объектов -->
+                </div>
+                
+                <div id="empty-state" class="empty-state" style="display: block;">
+                    <i class="fas fa-building"></i>
+                    <h3>Нет объектов для сравнения</h3>
+                    <p>Перейдите на страницу аналитики и добавьте объекты для сравнения, нажав кнопку "Добавить в сравнение"</p>
+                    <p style="display: flex; align-items: center; gap: 10px; justify-content: center;">
+                        <i class="fas fa-info-circle" style="color: var(--gray-slightly-light);"></i> <span style="color: var(--gray-slightly-light);">Максимальное количество объектов для сравнения: 5</span>
+                    </p>
+                    <a href="analytics.html" class="btn">
+                        <i class="fas fa-map-marked-alt"></i> Перейти к аналитике
+                    </a>
+                </div>
+            </div>
+
+            <!-- Секция таблицы сравнения -->
+            <div class="comparison-section" id="comparison-section" style="display: none;">
+                <h2><i class="fas fa-table"></i> Таблица сравнения</h2>
+                <div class="comparison-table-container">
+                    <table class="comparison-table" id="comparison-table">
+                        <thead>
+                            <tr>
+                                <th class="param-name">Параметр</th>
+                                <!-- Колонки будут добавляться динамически -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Строки будут добавляться динамически -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Секция графиков -->
+            <div class="charts-section" id="charts-section" style="display: none;">
+                <h2><i class="fas fa-chart-bar"></i> Графическое сравнение</h2>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3><i class="fas fa-star"></i> Сравнение рейтингов</h3>
+                        <div class="chart-container">
+                            <canvas id="ratings-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3><i class="fas fa-chart-pie"></i> Распределение оценок</h3>
+                        <div class="chart-container">
+                            <canvas id="distribution-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Телефон: +7 (xxx) xxx-xx-xx</p>
+                    <p>Email: исур@company.ru</p>
+                    <p><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Адрес</h3>
+                    <p>г. Москва ул. Павла Корчагина, д. 22</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <p>Telegram | VK</p>
+                    <p>Подпишитесь на наши обновления</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ИСУР. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <div id="notification-message">Уведомление</div>
+        </div>
+    </div>
+
+    <script src="/backend/diffs.js"></script>
+    <script>
+        // Мобильное меню
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

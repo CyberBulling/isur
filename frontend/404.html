@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница не найдена | ИСУР</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <!-- Улучшенная шапка -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="images/images/logo1.svg" alt="ИСУР Логотип">
+                </div>
+                <div class="logo-text"></div>
+            </div>
+            <nav id="mainNav">
+                <a href="index.html">Главная</a>
+                <a href="about.html">О нас</a>
+                <a href="services.html">Цифровой помощник</a>
+                <a href="analytics.html">Аналитика</a>
+                <a href="calculator.html">Инвест-калькулятор</a>
+                <a href="diffs.html">Сравнение объектов</a>
+                <a href="contact.html">Контакты</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Анимированный фон -->
+    <div class="neural-background" id="neuralNetwork"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Центральная секция с ошибкой -->
+            <section class="error-hero">
+                <div class="error-number-container">
+                    <div class="error-number" id="errorNumber">404</div>
+                </div>
+                
+                <h1 class="error-title">Страница не найдена</h1>
+                
+                <p class="error-description">
+                    Кажется, мы не можем найти то, что вы ищете. Возможно, страница была перемещена, 
+                    удалена, или вы ввели неправильный URL. Но не волнуйтесь - у нас есть много других 
+                    интересных возможностей для исследования!
+                </p>
+
+                <!-- Анимированный робот МИМИ -->
+                <div class="robot-container">
+                    <div class="robot-speech">Помогу найти нужную информацию!</div>
+                            <img src="images/images/Component 29 (1) (1).png" style="  max-width: 30%;height: auto;"  alt="Робот МИМИ">
+                            </div>
+                <!-- Основные кнопки действий -->
+                <div class="action-buttons">
+                    <a href="index.html" class="btn">
+                        <i class="fas fa-home"></i>
+                        <span>Вернуться на главную</span>
+                    </a>
+                    <a href="services.html" class="btn btn-outline">
+                        <i class="fas fa-robot"></i>
+                        <span>Спросить у МИМИ</span>
+                    </a>
+                    <button onclick="goBack()" class="btn btn-accent">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Вернуться назад</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Информационная панель -->
+            <div class="info-panel fade-in">
+                <h4>
+                    <i class="fas fa-lightbulb"></i>
+                    Полезный совет от системы ИСУР
+                </h4>
+                <p>
+                    Если вы не можете найти нужную информацию, попробуйте использовать наш интеллектуальный помощник МИМИ. 
+                    Он может помочь с поиском, ответить на вопросы о городской инфраструктуре или направить вас к нужному разделу.
+                </p>
+            </div>
+
+            <!-- Быстрые ссылки -->
+            <section class="quick-links fade-in">
+                <article class="link-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Аналитика данных</h3>
+                    <p>Исследуйте интерактивные карты Москвы, анализируйте инфраструктуру и получайте данные в реальном времени</p>
+                    <a href="analytics.html" class="card-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        Исследовать
+                    </a>
+                </article>
+                
+                <article class="link-card">
+                    <div class="card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Искусственный интеллект</h3>
+                    <p>Общайтесь с нашим цифровым помощником МИМИ для получения персональных рекомендаций и аналитики</p>
+                    <a href="services.html" class="card-btn">
+                        <i class="fas fa-comments"></i>
+                        Начать диалог
+                    </a>
+                </article>
+                
+                <article class="link-card">
+                    <div class="card-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Городские решения</h3>
+                    <p>Узнайте, как наша система помогает в управлении городской инфраструктурой и улучшении качества жизни</p>
+                    <a href="about.html" class="card-btn">
+                        <i class="fas fa-info-circle"></i>
+                        Узнать больше
+                    </a>
+                </article>
+            </section>
+
+            <!-- Поиск по сайту -->
+            <div class="search-container fade-in">
+                <div class="search-header">
+                    <h3>
+                        <i class="fas fa-search"></i>
+                        Поиск по сайту
+                    </h3>
+                    <p>Найдите нужную информацию с помощью нашего умного поиска</p>
+                </div>
+                <div class="search-input-group">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Введите запрос для поиска...">
+                    <button class="btn" onclick="performSearch()">
+                        <i class="fas fa-search"></i>
+                        Найти
+                    </button>
+                </div>
+                <div id="searchResults" style="display: none; margin-top: 1.5rem;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Улучшенный футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone"></i> Телефон: +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> Email: info@isur.ru</p>
+                    <p><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Адрес</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва ул. Павла Корчагина, д. 22</p>
+                    <p><i class="fas fa-subway"></i> Метро: ВДНХ</p>
+                </div>
+                <div class="footer-section">
+              <h3>Социальные сети</h3>
+                    <p>Telegram | VK </p>
+                    <p>Подпишитесь на наши обновления</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ИСУР. Все права защищены.</p>
+                <p style="font-size: 0.75rem; margin-top: 0.5rem;">Интеллектуальная система управления развитием</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

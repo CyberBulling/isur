@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инвестиционный калькулятор недвижимости — ИСУР</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calculator.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="images/images/logo1.svg" alt="ИСУР Логотип">
+                </div>
+                <div class="logo-text"></div>
+            </div>
+            <nav id="mainNav">
+                <a href="index.html">Главная</a>
+                <a href="about.html">О нас</a>
+                <a href="services.html">Цифровой помощник</a>
+                <a href="analytics.html">Аналитика</a>
+                <a href="calculator.html" class="active">Инвест-калькулятор</a>
+                <a href="diffs.html">Сравнение объектов</a>
+                <a href="contact.html">Контакты</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> <span>></span>
+            <span>Инвестиционный калькулятор</span>
+        </div>
+    </div>
+
+    <section class="hero calculator-hero">
+        <div class="container hero-content">
+            <div class="hero-kicker"><i class="fas fa-chart-line"></i> Модуль прогнозной аналитики недвижимости</div>
+            <h1>Калькулятор инвестиционной привлекательности</h1>
+            <p>Оцените предполагаемую стоимость квартиры в Москве через заданное количество лет с учётом макроэкономики, развития инфраструктуры, привлекательности района, параметров объекта и износа здания.</p>
+            <div class="hero-buttons">
+                <a href="#calculator" class="btn"><i class="fas fa-calculator"></i> Рассчитать прогноз</a>
+                <a href="#methodology" class="btn btn-outline"><i class="fas fa-diagram-project"></i> Методика расчёта</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="calculator-intro">
+            <div class="intro-card">
+                <div class="intro-icon"><i class="fas fa-location-dot"></i></div>
+                <h3>Адрес и район</h3>
+                <p>Система связывает объект с городским контекстом: районом, транспортом, социальной инфраструктурой и планами развития.</p>
+            </div>
+            <div class="intro-card">
+                <div class="intro-icon"><i class="fas fa-building"></i></div>
+                <h3>Параметры квартиры</h3>
+                <p>Этаж, вид из окна, планировка, класс ЖК и возраст здания превращаются в числовые поправки к стоимости.</p>
+            </div>
+            <div class="intro-card">
+                <div class="intro-icon"><i class="fas fa-coins"></i></div>
+                <h3>Финансовый прогноз</h3>
+                <p>На выходе пользователь получает прогнозируемую цену, общий прирост, годовую динамику и разбор факторов.</p>
+            </div>
+        </section>
+
+        <section class="calculator-layout" id="calculator">
+            <form class="calculator-form-card" id="investmentForm">
+                <div class="calc-card-header">
+                    <div>
+                        <h2><i class="fas fa-sliders"></i> Входные данные</h2>
+                        <p>Заполните параметры объекта. В демо-версии внешние API заменены стартовыми коэффициентами из модели.</p>
+                    </div>
+                    <span class="status-pill"><i class="fas fa-flask"></i> MVP-расчёт</span>
+                </div>
+
+                <div class="form-section">
+                    <h3><span>1</span> Базовые параметры</h3>
+                    <div class="form-grid calc-form-grid">
+                        <div class="form-group full-width">
+                            <label for="address">Адрес объекта в Москве</label>
+                            <input type="text" id="address" placeholder="Например: Москва, ул. Вавилова, 4" value="Москва, ул. Вавилова, 4">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Текущая стоимость, ₽ <span class="required">*</span></label>
+                            <input type="number" id="price" min="1000000" step="50000" value="18500000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="years">Горизонт прогноза, лет <span class="required">*</span></label>
+                            <select id="years" required>
+                                <option value="1">1 год</option>
+                                <option value="2">2 года</option>
+                                <option value="3">3 года</option>
+                                <option value="4">4 года</option>
+                                <option value="5" selected>5 лет</option>
+                                <option value="6">6 лет</option>
+                                <option value="7">7 лет</option>
+                                <option value="8">8 лет</option>
+                                <option value="9">9 лет</option>
+                                <option value="10">10 лет</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="district">Административный округ</label>
+                            <select id="district">
+                                <option value="ЦАО">ЦАО — Центральный</option>
+                                <option value="ЗАО">ЗАО — Западный</option>
+                                <option value="ЮЗАО" selected>ЮЗАО — Юго-Западный</option>
+                                <option value="СЗАО">СЗАО — Северо-Западный</option>
+                                <option value="САО">САО — Северный</option>
+                                <option value="СВАО">СВАО — Северо-Восточный</option>
+                                <option value="ВАО">ВАО — Восточный</option>
+                                <option value="ЮАО">ЮАО — Южный</option>
+                                <option value="ЮВАО">ЮВАО — Юго-Восточный</option>
+                                <option value="ЗелАО">ЗелАО — Зеленоградский</option>
+                                <option value="ТиНАО">ТиНАО — Новая Москва</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="buildYear">Год постройки дома</label>
+                            <input type="number" id="buildYear" min="1850" max="2035" step="1" value="2018">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3><span>2</span> Характеристики квартиры</h3>
+                    <div class="form-grid calc-form-grid">
+                        <div class="form-group">
+                            <label for="floorType">Этаж</label>
+                            <select id="floorType">
+                                <option value="middle" selected>Средний этаж</option>
+                                <option value="first">Первый этаж</option>
+                                <option value="last">Последний этаж</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="viewType">Вид из окна</label>
+                            <select id="viewType">
+                                <option value="courtyard" selected>Во двор или на улицу</option>
+                                <option value="park">На парк или лесопарк</option>
+                                <option value="water">На водоём</option>
+                                <option value="industrial">На промзону или стройку</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="layoutType">Планировка</label>
+                            <select id="layoutType">
+                                <option value="standard" selected>Стандартная</option>
+                                <option value="improved">Улучшенная / современная</option>
+                                <option value="bad">Неудачная</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="classType">Класс ЖК</label>
+                            <select id="classType">
+                                <option value="comfort" selected>Комфорт / эконом</option>
+                                <option value="business">Бизнес / премиум</option>
+                                <option value="unknown">Не указан</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3><span>3</span> Инфраструктурные события</h3>
+                    <p class="form-hint">В рабочей версии эти события должны определяться автоматически через бэкенд и внешние источники. Здесь они вынесены в форму, чтобы показать логику расчёта.</p>
+                    <div class="infra-grid">
+                        <label class="infra-option">
+                            <input type="checkbox" id="metroEvent" checked>
+                            <span><i class="fas fa-subway"></i> Новое метро / сокращение пути</span>
+                        </label>
+                        <label class="infra-option">
+                            <input type="checkbox" id="schoolEvent" checked>
+                            <span><i class="fas fa-school"></i> Новая школа в радиусе 500 м</span>
+                        </label>
+                        <label class="infra-option">
+                            <input type="checkbox" id="kindergartenEvent">
+                            <span><i class="fas fa-child-reaching"></i> Новый детский сад</span>
+                        </label>
+                        <label class="infra-option">
+                            <input type="checkbox" id="parkEvent">
+                            <span><i class="fas fa-tree"></i> Новый парк / благоустройство</span>
+                        </label>
+                        <label class="infra-option">
+                            <input type="checkbox" id="businessEvent">
+                            <span><i class="fas fa-briefcase"></i> ТЦ или бизнес-кластер</span>
+                        </label>
+                        <label class="infra-option infra-option-warning">
+                            <input type="checkbox" id="renovationRisk">
+                            <span><i class="fas fa-triangle-exclamation"></i> Дом входит в реновацию</span>
+                        </label>
+                    </div>
+
+                    <div class="transport-details" id="transportDetails">
+                        <div class="form-group">
+                            <label for="oldMetroTime">Сейчас до метро, минут</label>
+                            <input type="number" id="oldMetroTime" min="1" max="60" value="22">
+                        </div>
+                        <div class="form-group">
+                            <label for="newMetroTime">После события, минут</label>
+                            <input type="number" id="newMetroTime" min="1" max="60" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="metroYears">Срок реализации, лет</label>
+                            <input type="number" id="metroYears" min="1" max="10" value="4">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit"><i class="fas fa-chart-line"></i> Рассчитать инвестиционный прогноз</button>
+            </form>
+
+            <aside class="result-panel" id="resultPanel">
+                <div class="result-header">
+                    <div>
+                        <span class="result-label">Прогнозируемая стоимость</span>
+                        <h2 id="forecastPrice">—</h2>
+                    </div>
+                    <div class="score-badge" id="scoreBadge">—</div>
+                </div>
+
+                <div class="result-main-grid">
+                    <div class="result-stat">
+                        <span>Общий прирост</span>
+                        <strong id="totalGrowth">—</strong>
+                    </div>
+                    <div class="result-stat">
+                        <span>Среднегодовой рост</span>
+                        <strong id="annualGrowth">—</strong>
+                    </div>
+                    <div class="result-stat">
+                        <span>Скоринг района</span>
+                        <strong id="districtScore">—</strong>
+                    </div>
+                    <div class="result-stat">
+                        <span>Индекс объекта</span>
+                        <strong id="objectIndex">—</strong>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-layer-group"></i> Вклад коэффициентов</h3>
+                    <div class="factor-list" id="factorList"></div>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-calendar-days"></i> Прогноз по годам</h3>
+                    <div class="forecast-years" id="forecastYears"></div>
+                </div>
+
+                <div class="risk-box" id="riskBox">
+                    <i class="fas fa-circle-info"></i>
+                    <p>Расчёт является демонстрацией модели. Для коммерческого запуска коэффициенты должны обновляться через бэкенд, базу данных и проверенные источники.</p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="methodology-section" id="methodology">
+            <div class="methodology-content">
+                <h2 class="section-title"><i class="fas fa-diagram-project"></i> Методика расчёта</h2>
+                <p class="section-subtitle">Калькулятор объединяет пять групп факторов в единую мультипликативную модель. Это позволяет связать качество городской среды с финансовой оценкой конкретной квартиры.</p>
+
+                <div class="formula-card">
+                    <div class="formula-text">
+                        P<sub>t</sub> = P<sub>0</sub> × (1.06)<sup>t</sup> × (1 + G<sub>infra</sub>)<sup>t</sup> × (1 + G<sub>district</sub>)<sup>t</sup> × G<sub>object</sub> × e<sup>−k·t</sup>
+                    </div>
+                    <p>Где P<sub>t</sub> — прогнозируемая стоимость, P<sub>0</sub> — текущая стоимость, t — горизонт прогноза, G<sub>infra</sub> — инфраструктура, G<sub>district</sub> — район, G<sub>object</sub> — параметры квартиры, e<sup>−k·t</sup> — износ здания.</p>
+                </div>
+
+                <div class="method-grid">
+                    <div class="method-card">
+                        <span>A</span>
+                        <h3>Макроэкономика</h3>
+                        <p>Базовый рост рынка Москвы зафиксирован на уровне 6% годовых для MVP.</p>
+                    </div>
+                    <div class="method-card">
+                        <span>B</span>
+                        <h3>Инфраструктура</h3>
+                        <p>Метро, школы, сады, парки, ТЦ и реновация переводятся в годовой G<sub>infra</sub>.</p>
+                    </div>
+                    <div class="method-card">
+                        <span>C</span>
+                        <h3>Район</h3>
+                        <p>Скоринг округа от 0 до 100 конвертируется в годовую ставку G<sub>district</sub>.</p>
+                    </div>
+                    <div class="method-card">
+                        <span>D</span>
+                        <h3>Объект</h3>
+                        <p>Этаж, вид, планировка и класс ЖК формируют разовую поправку G<sub>object</sub>.</p>
+                    </div>
+                    <div class="method-card">
+                        <span>E</span>
+                        <h3>Износ</h3>
+                        <p>Коэффициент k зависит от возраста здания и снижает прогноз на длинном горизонте.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone"></i> +7 (xxx) xxx-xx-xx</p>
+                    <p><i class="fas fa-envelope"></i> исур@company.ru</p>
+                    <p><i class="fas fa-clock"></i> Пн-Пт 9–18</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Адрес</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Павла Корчагина, 22</p>
+                    <p><i class="fas fa-subway"></i> Метро ВДНХ</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <p>Telegram | VK</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ИСУР. Все права защищены.</p>
+                <p style="font-size:0.8rem;">Интеллектуальная система управления развитием</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/calculator.js"></script>
+</body>
+</html>

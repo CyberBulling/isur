@@ -1,0 +1,530 @@
+/* ===== СТРАНИЦА ИНВЕСТИЦИОННОГО КАЛЬКУЛЯТОРА ИСУР ===== */
+
+.calculator-hero {
+    margin-bottom: 3rem;
+}
+
+.hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font-weight: 700;
+    backdrop-filter: blur(12px);
+}
+
+.calculator-intro {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.intro-card,
+.method-card,
+.calculator-form-card,
+.result-panel,
+.formula-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    border: 2px solid rgba(226, 232, 240, 0.65);
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-card {
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.intro-card::before,
+.calculator-form-card::before,
+.result-panel::before,
+.formula-card::before,
+.method-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.intro-card:hover,
+.method-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--elevated-shadow);
+}
+
+.intro-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    background: linear-gradient(135deg, rgba(26, 86, 219, 0.12), rgba(200, 0, 0, 0.08));
+    color: var(--primary);
+    font-size: 1.7rem;
+}
+
+.intro-card h3,
+.method-card h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.intro-card p,
+.method-card p,
+.form-hint,
+.formula-card p {
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+.calculator-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+    gap: 2rem;
+    align-items: start;
+    margin: 3rem 0 4rem;
+}
+
+.calculator-form-card,
+.result-panel {
+    padding: 2.5rem;
+}
+
+.result-panel {
+    position: sticky;
+    top: 110px;
+}
+
+.calc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.calc-card-header h2 {
+    color: var(--primary-dark);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.calc-card-header p {
+    color: var(--gray);
+    max-width: 680px;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    white-space: nowrap;
+    background: linear-gradient(135deg, rgba(26, 86, 219, 0.12), rgba(26, 86, 219, 0.06));
+    color: var(--primary);
+    border: 1px solid rgba(26, 86, 219, 0.18);
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.form-section {
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.form-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary-dark);
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+}
+
+.form-section h3 span {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+}
+
+.calc-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.infra-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin: 1.3rem 0 1.5rem;
+}
+
+.infra-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 2px solid rgba(226, 232, 240, 0.9);
+    border-radius: 14px;
+    background: #fff;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.infra-option:hover {
+    transform: translateY(-2px);
+    border-color: rgba(26, 86, 219, 0.35);
+    box-shadow: var(--card-shadow);
+}
+
+.infra-option input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+}
+
+.infra-option span {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.infra-option i {
+    color: var(--primary);
+    width: 20px;
+    text-align: center;
+}
+
+.infra-option-warning i {
+    color: var(--accent);
+}
+
+.transport-details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(26, 86, 219, 0.06), rgba(200, 0, 0, 0.04));
+    padding: 1.25rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(26, 86, 219, 0.12);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.result-label {
+    display: block;
+    color: var(--gray);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.result-header h2 {
+    font-size: 2.2rem;
+    color: var(--primary-dark);
+    line-height: 1.1;
+}
+
+.score-badge {
+    padding: 0.65rem 0.9rem;
+    border-radius: 999px;
+    background: var(--gray-light);
+    color: var(--gray);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.score-badge.good {
+    background: rgba(16, 185, 129, 0.12);
+    color: #047857;
+}
+
+.score-badge.medium {
+    background: rgba(245, 158, 11, 0.14);
+    color: #b45309;
+}
+
+.score-badge.risk {
+    background: rgba(239, 68, 68, 0.12);
+    color: #b91c1c;
+}
+
+.result-main-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.result-stat {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 14px;
+    padding: 1rem;
+}
+
+.result-stat span {
+    display: block;
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.result-stat strong {
+    color: var(--primary-dark);
+    font-size: 1.15rem;
+}
+
+.result-section {
+    margin-top: 1.75rem;
+}
+
+.result-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+}
+
+.factor-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.factor-row {
+    display: grid;
+    grid-template-columns: 145px 1fr 76px;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.factor-title {
+    font-weight: 700;
+    color: var(--dark);
+    font-size: 0.92rem;
+}
+
+.factor-bar {
+    height: 10px;
+    background: var(--gray-light);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.factor-fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    min-width: 4px;
+}
+
+.factor-fill.negative {
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+}
+
+.factor-value {
+    text-align: right;
+    font-weight: 800;
+    color: var(--primary-dark);
+    font-size: 0.9rem;
+}
+
+.forecast-years {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.year-row {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    color: var(--gray);
+    font-size: 0.92rem;
+}
+
+.year-line {
+    height: 8px;
+    border-radius: 999px;
+    background: var(--gray-light);
+    overflow: hidden;
+}
+
+.year-line span {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+.year-price {
+    color: var(--dark);
+    font-weight: 700;
+}
+
+.risk-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-top: 1.75rem;
+    padding: 1rem;
+    border-radius: 14px;
+    background: rgba(26, 86, 219, 0.08);
+    border-left: 4px solid var(--primary);
+    color: var(--gray);
+}
+
+.risk-box i {
+    color: var(--primary);
+    margin-top: 0.2rem;
+}
+
+.risk-box.warning {
+    background: rgba(245, 158, 11, 0.12);
+    border-left-color: #f59e0b;
+}
+
+.risk-box.warning i {
+    color: #b45309;
+}
+
+.methodology-section {
+    margin: 4rem 0;
+}
+
+.methodology-content {
+    background: linear-gradient(135deg, #ffffff, #f0f9ff);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: var(--elevated-shadow);
+}
+
+.formula-card {
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.formula-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 1rem;
+    word-break: break-word;
+}
+
+.method-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.method-card {
+    padding: 1.5rem;
+}
+
+.method-card span {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 1100px) {
+    .calculator-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .result-panel {
+        position: static;
+    }
+
+    .method-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .calculator-intro,
+    .calc-form-grid,
+    .infra-grid,
+    .transport-details {
+        grid-template-columns: 1fr;
+    }
+
+    .calc-card-header,
+    .result-header {
+        flex-direction: column;
+    }
+
+    .result-header h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .calculator-form-card,
+    .result-panel,
+    .methodology-content {
+        padding: 1.5rem;
+    }
+
+    .result-main-grid,
+    .method-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .factor-row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+    }
+
+    .factor-value {
+        text-align: left;
+    }
+
+    .formula-text {
+        font-size: 1.1rem;
+        text-align: left;
+    }
+}

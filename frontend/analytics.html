@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комплексная аналитика Москвы - ИСУР</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Улучшенная шапка -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="images/images/logo1.svg" alt="ИСУР Логотип">
+                </div>
+                <div class="logo-text"></div>
+            </div>
+            <nav id="mainNav">
+                <a href="index.html">Главная</a>
+                <a href="about.html">О нас</a>
+                <a href="services.html">Цифровой помощник</a>
+                <a href="analytics.html" class="active">Аналитика</a>
+                <a href="calculator.html">Инвест-калькулятор</a>
+                <a href="diffs.html">Сравнение объектов</a>
+                <a href="contact.html">Контакты</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Хлебные крошки -->
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> <span>></span>
+            <a href="analytics.html">Аналитика</a> <span>></span>
+            <span>Комплексная аналитика Москвы</span>
+        </div>
+    </div>
+
+    <!-- Улучшенная Hero секция -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Комплексная аналитика Москвы</h1>
+            <p>Глубокий анализ инфраструктуры города: транспорт, образование, здравоохранение, жилье и экология по всем
+                районам Москвы. Интерактивная аналитика в реальном времени.</p>
+            <div class="hero-buttons">
+                <a href="#map" class="btn">
+                    <i class="fas fa-map-marked-alt"></i> Интерактивная карта
+                </a>
+                <a href="#analytics" class="btn btn-outline">
+                    <i class="fas fa-chart-bar"></i> Анализ данных
+                </a>
+                <a href="#infrastructure" class="btn btn-accent">
+                    <i class="fas fa-city"></i> Социальная инфраструктура
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Карта объектов -->
+        <section class="map-section" id="map">
+            <h2 class="section-title"><i class="fas fa-map"></i> Интерактивная карта Москвы</h2>
+            <p class="section-subtitle text-center">Объекты инфраструктуры с детальной аналитикой по всем районам
+                города. Исследуйте данные в реальном времени.</p>
+
+            <div class="map-controls">
+                <div class="filter-group">
+                    <span class="filter-label">Типы объектов:</span>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="filter-building" class="filter-checkbox" checked>
+                            <span>ЖК</span>
+                            <div class="legend-color" style="background-color: #1f90d1;"></div>
+
+                        </label>
+                        <label class="filter-option">
+
+                            <input type="checkbox" id="filter-school" class="filter-checkbox" checked>
+                            <span>Школы</span>
+                            <div class="legend-color" style="background-color: #9e6c33;"></div>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="filter-hospital" class="filter-checkbox" checked>
+                            <span>Больницы</span>
+                            <div class="legend-color" style="background-color: #FF0000;"></div>
+
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="filter-metro" class="filter-checkbox" checked>
+                            <span>Метро</span>
+                            <div class="legend-color" style="background-color: #8024c7;"></div>
+
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="filter-stop" class="filter-checkbox" checked>
+                            <span>Остановки</span>
+                            <div class="legend-color" style="background-color: #FFA500;"></div>
+
+                        </label>
+                    </div>
+                </div>
+
+                <!-- <div class="map-buttons">
+                    <button id="reset-view-btn" class="map-btn">
+                        <i class="fas fa-globe-europe"></i> Сбросить вид
+                    </button>
+                    <button id="load-data-btn" class="map-btn">
+                        <i class="fas fa-download"></i> Загрузить данные
+                    </button>
+                </div> -->
+            </div>
+
+            <div class="loader" id="loader">
+                <i class="fas fa-spinner"></i> Загрузка данных...
+            </div>
+
+            <div id="map-container" class="map-container"></div>
+
+            <div class="info-panel" id="info-panel">
+                <div class="info-panel-header">
+                    <h3 id="info-title">Информация</h3>
+                    <button class="btn-close" id="close-btn">×</button>
+                </div>
+                <div class="info-content" id="info-content"></div>
+                <div class="info-panel-buttons">
+                    <a href="#" id="detailed-analysis-btn" class="btn" style="display: none;">
+                        <i class="fas fa-chart-line"></i> Детальный анализ</a>
+                    <button id="add-to-compare-btn" class="btn-compare" style="display: none;">
+                        <i class="fas fa-balance-scale"></i> Добавить к сравнению</button>
+                </div>
+            </div>
+
+            <div class="custom-spoiler">
+                <details class="spoiler-block">
+                    <summary class="spoiler-header">
+                        <span class="spoiler-title"><i class="fas fa-chart-line"></i>Аналитическая справка</span>
+                        <span class="spoiler-icon"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="spoiler-content">
+                        <p>Представленные ниже графики основаны на агрегированных данных по 10 административным округам
+                            Москвы.
+                            Индексы транспортной доступности, образования, здравоохранения и жилищного фонда
+                            рассчитываются по методике ИСУР
+                            с учётом плотности населения, количества объектов и социологических опросов жителей.
+                            Актуальность данных — 2025 год.</p>
+                        <p style="margin-top: 0.75rem;"> <strong>Совет:</strong> Для
+                            сравнения районов используйте интерактивную карту и фильтры выше.</p>
+                    </div>
+                </details>
+            </div>
+
+            <section class="district-analytics" id="districts">
+                <h2 class="section-title"><i class="fas fa-city"></i> Аналитика по районам Москвы</h2>
+                <p class="section-subtitle text-center">Детальная информация по каждому району города с показателями
+                    инфраструктуры и сравнительным анализом</p>
+
+                <div class="district-selector">
+                    <select id="district-select">
+                        <option value="">Выберите район Москвы</option>
+                    </select>
+                </div>
+
+                <div class="district-info" id="district-info">
+                    <div class="district-stat">
+                        <div class="district-stat-value" id="district-population">-</div>
+                        <div class="district-stat-label">Население</div>
+                    </div>
+                    <div class="district-stat">
+                        <div class="district-stat-value" id="district-area">-</div>
+                        <div class="district-stat-label">Площадь (км²)</div>
+                    </div>
+                    <div class="district-stat">
+                        <div class="district-stat-value" id="district-density">-</div>
+                        <div class="district-stat-label">Плотность (чел/км²)</div>
+                    </div>
+                    <div class="district-stat">
+                        <div class="district-stat-value" id="district-infrastructure">-</div>
+                        <div class="district-stat-label">Инфраструктурный индекс</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="district-chart"></canvas>
+                </div>
+            </section>
+
+            
+
+            <!-- Аналитические графики -->
+            <section class="analytics-section" id="analytics">
+                <h2 class="section-title"><i class="fas fa-chart-line"></i> Анализ инфраструктуры Москвы</h2>
+                <p class="section-subtitle text-center">Сравнительные показатели по всем районам города на основе
+                    актуальных
+                    данных</p>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card fade-in">
+                        <h3><i class="fas fa-subway"></i> Транспортная доступность</h3>
+                        <p>Сравнение районов по количеству станций метро, остановок общественного транспорта и
+                            транспортной
+                            загруженности. Индекс доступности рассчитывается на основе плотности транспортной сети.</p>
+                        <div class="chart-container">
+                            <canvas id="transport-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card fade-in">
+                        <h3><i class="fas fa-graduation-cap"></i> Образовательная инфраструктура</h3>
+                        <p>Количество школ, детских садов и вузов на 1000 жителей по районам Москвы. Анализ
+                            обеспеченности
+                            образовательными учреждениями разных уровней.</p>
+                        <div class="chart-container">
+                            <canvas id="education-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card fade-in">
+                        <h3><i class="fas fa-hospital"></i> Здравоохранение</h3>
+                        <p>Обеспеченность медицинскими учреждениями и доступность поликлиник по районам города.
+                            Учитывается
+                            количество мест в стационарах и поликлиническая сеть.</p>
+                        <div class="chart-container">
+                            <canvas id="healthcare-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card fade-in">
+                        <h3><i class="fas fa-home"></i> Жилищный фонд</h3>
+                        <p>Средняя стоимость жилья, количество новостроек и состояние жилого фонда по районам. Анализ
+                            доступности жилья и качества жилищных условий.</p>
+                        <div class="chart-container">
+                            <canvas id="housing-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="stats-panel" id="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="building-count">0</div>
+                    <div class="stat-label">Жилых объектов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="school-count">0</div>
+                    <div class="stat-label">Школ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="hospital-count">0</div>
+                    <div class="stat-label">Больниц</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="metro-count">0</div>
+                    <div class="stat-label">Станций метро</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stop-count">0</div>
+                    <div class="stat-label">Остановок</div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- Статистика -->
+        <div class="stats-cards">
+            <div class="stat-card" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                <div class="stat-card-value">1256</div>
+                <div class="stat-card-label">объектов образования</div>
+                <div class="stat-card-progress">
+                    <div class="stat-card-progress-bar" style="width: 75%;"></div>
+                </div>
+            </div>
+
+            <div class="stat-card" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                <div class="stat-card-value">843</div>
+                <div class="stat-card-label">медицинских учреждений</div>
+                <div class="stat-card-progress">
+                    <div class="stat-card-progress-bar" style="width: 67%;"></div>
+                </div>
+            </div>
+
+            <div class="stat-card" style="background: linear-gradient(135deg, #10b981, #059669);">
+                <div class="stat-card-value">327</div>
+                <div class="stat-card-label">парков и скверов</div>
+                <div class="stat-card-progress">
+                    <div class="stat-card-progress-bar" style="width: 50%;"></div>
+                </div>
+            </div>
+
+            <div class="stat-card" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                <div class="stat-card-value">89%</div>
+                <div class="stat-card-label">районов с полным набором</div>
+                <div class="stat-card-progress">
+                    <div class="stat-card-progress-bar" style="width: 89%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Улучшенный футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone"></i> Телефон: +7 (xxx) xxx-xx-xx</p>
+                    <p><i class="fas fa-envelope"></i> Email: исур@company.ru</p>
+                    <p><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Адрес</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва ул. Павла Корчагина, д. 22</p>
+                    <p><i class="fas fa-subway"></i> Метро: ВДНХ</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <p>Telegram | VK </p>
+                    <p>Подпишитесь на наши обновления</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ИСУР. Все права защищены.</p>
+                <p style="font-size: 0.75rem; margin-top: 0.5rem;">Интеллектуальная система управления развитием</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Уведомления -->
+    <div class="notification info" id="notification">
+        <i class="fas fa-info-circle"></i>
+        <div id="notification-message">Уведомление</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/ol@8.2.0/dist/ol.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- <script src="js/script.js"></script> -->
+    <script src="/backend/analytics2.js"></script>
+    <script>
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function () {
+            // Мобильное меню
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                document.getElementById('main-nav').classList.toggle('active');
+                const icon = document.getElementById('menu-toggle').querySelector('i');
+                icon.className = document.getElementById('main-nav').classList.contains('active')
+                    ? 'fas fa-times'
+                    : 'fas fa-bars';
+            });
+
+            // Закрытие инфопанели
+            document.getElementById('close-btn').addEventListener('click', () => {
+                document.getElementById('info-panel').classList.remove('show');
+            });
+
+            // Загрузка данных
+            document.getElementById('load-data-btn').addEventListener('click', () => {
+                const link = document.createElement('a');
+                link.href = '/download/installdata.zip';
+                link.download = 'installdata.zip';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+
+            // Сброс вида
+            document.getElementById('reset-view-btn').addEventListener('click', () => {
+                document.getElementById('filter-building').checked = true;
+                document.getElementById('filter-school').checked = true;
+                document.getElementById('filter-hospital').checked = true;
+                document.getElementById('filter-metro').checked = true;
+                document.getElementById('filter-stop').checked = true;
+
+                const infoPanel = document.getElementById('info-panel');
+                infoPanel.classList.remove('show');
+
+                if (typeof ol !== 'undefined' && typeof map !== 'undefined' && map && map.getView) {
+                    map.getView().setCenter(ol.proj.fromLonLat([37.6173, 55.7558]));
+                    map.getView().setZoom(12);
+                }
+            });
+
+            // Обновление счетчика сравнения
+            function updateComparisonCounter() {
+                const buildings = JSON.parse(localStorage.getItem('isur_buildings_comparison') || '[]');
+                const counter = document.getElementById('comparison-counter');
+                if (counter) {
+                    counter.textContent = buildings.length;
+                    counter.style.display = buildings.length > 0 ? 'inline-flex' : 'none';
+                }
+            }
+
+            // Инициализация счетчика
+            updateComparisonCounter();
+
+            // Обновление при изменении localStorage
+            window.addEventListener('storage', updateComparisonCounter);
+
+            // ДАННЫЕ ДЛЯ ГРАФИКОВ (как во втором файле)
+            const moscowDistricts = [
+                {
+                    name: "Центральный",
+                    population: 753696,
+                    area: 66.18,
+                    density: 11388,
+                    infrastructure: 92,
+                    transport: 95,
+                    education: 88,
+                    healthcare: 90,
+                    housing: 85,
+                    metroStations: 45,
+                    schools: 120,
+                    hospitals: 28,
+                    residentialObjects: 850
+                },
+                {
+                    name: "Северный",
+                    population: 1147599,
+                    area: 113.73,
+                    density: 10090,
+                    infrastructure: 78,
+                    transport: 82,
+                    education: 75,
+                    healthcare: 76,
+                    housing: 79,
+                    metroStations: 18,
+                    schools: 95,
+                    hospitals: 22,
+                    residentialObjects: 720
+                },
+                {
+                    name: "Северо-Восточный",
+                    population: 1416748,
+                    area: 101.88,
+                    density: 13906,
+                    infrastructure: 75,
+                    transport: 78,
+                    education: 72,
+                    healthcare: 74,
+                    housing: 76,
+                    metroStations: 22,
+                    schools: 110,
+                    hospitals: 25,
+                    residentialObjects: 980
+                },
+                {
+                    name: "Восточный",
+                    population: 1516345,
+                    area: 154.84,
+                    density: 9793,
+                    infrastructure: 72,
+                    transport: 75,
+                    education: 70,
+                    healthcare: 71,
+                    housing: 72,
+                    metroStations: 20,
+                    schools: 105,
+                    hospitals: 23,
+                    residentialObjects: 920
+                },
+                {
+                    name: "Юго-Восточный",
+                    population: 1414777,
+                    area: 117.56,
+                    density: 12035,
+                    infrastructure: 71,
+                    transport: 73,
+                    education: 68,
+                    healthcare: 69,
+                    housing: 73,
+                    metroStations: 19,
+                    schools: 98,
+                    hospitals: 21,
+                    residentialObjects: 890
+                },
+                {
+                    name: "Южный",
+                    population: 1792876,
+                    area: 131.77,
+                    density: 13606,
+                    infrastructure: 69,
+                    transport: 70,
+                    education: 65,
+                    healthcare: 67,
+                    housing: 70,
+                    metroStations: 16,
+                    schools: 115,
+                    hospitals: 26,
+                    residentialObjects: 1100
+                },
+                {
+                    name: "Юго-Западный",
+                    population: 1438957,
+                    area: 111.36,
+                    density: 12922,
+                    infrastructure: 85,
+                    transport: 88,
+                    education: 82,
+                    healthcare: 84,
+                    housing: 86,
+                    metroStations: 25,
+                    schools: 125,
+                    hospitals: 29,
+                    residentialObjects: 950
+                },
+                {
+                    name: "Западный",
+                    population: 1309828,
+                    area: 153.03,
+                    density: 8559,
+                    infrastructure: 88,
+                    transport: 90,
+                    education: 85,
+                    healthcare: 87,
+                    housing: 89,
+                    metroStations: 28,
+                    schools: 118,
+                    hospitals: 27,
+                    residentialObjects: 880
+                },
+                {
+                    name: "Северо-Западный",
+                    population: 980940,
+                    area: 93.28,
+                    density: 10516,
+                    infrastructure: 81,
+                    transport: 83,
+                    education: 78,
+                    healthcare: 80,
+                    housing: 82,
+                    metroStations: 15,
+                    schools: 85,
+                    hospitals: 20,
+                    residentialObjects: 680
+                },
+                {
+                    name: "Зеленоградский",
+                    population: 250173,
+                    area: 37.22,
+                    density: 6721,
+                    infrastructure: 79,
+                    transport: 76,
+                    education: 80,
+                    healthcare: 78,
+                    housing: 81,
+                    metroStations: 0,
+                    schools: 45,
+                    hospitals: 8,
+                    residentialObjects: 320
+                }
+            ];
+
+            // Заполнение выпадающего списка районов
+            const districtSelect = document.getElementById('district-select');
+            moscowDistricts.forEach(district => {
+                const option = document.createElement('option');
+                option.value = district.name;
+                option.textContent = district.name;
+                districtSelect.appendChild(option);
+            });
+
+            // Обработчик изменения выбранного района
+            districtSelect.addEventListener('change', function () {
+                const selectedDistrict = moscowDistricts.find(d => d.name === this.value);
+                if (selectedDistrict) {
+                    document.getElementById('district-population').textContent = selectedDistrict.population.toLocaleString();
+                    document.getElementById('district-area').textContent = selectedDistrict.area;
+                    document.getElementById('district-density').textContent = selectedDistrict.density.toLocaleString();
+                    document.getElementById('district-infrastructure').textContent = selectedDistrict.infrastructure + '/100';
+
+                    // Обновление графика для выбранного района
+                    updateDistrictChart(selectedDistrict);
+                }
+            });
+
+            // Функция для обновления графиков (как во втором файле)
+            function updateCharts() {
+                // График транспортной доступности
+                const transportCtx = document.getElementById('transport-chart').getContext('2d');
+                new Chart(transportCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: moscowDistricts.map(d => d.name),
+                        datasets: [{
+                            label: 'Транспортная доступность',
+                            data: moscowDistricts.map(d => d.transport),
+                            backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                            borderColor: 'rgba(52, 152, 219, 1)',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                ticks: {
+                                    color: '#6b7280'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#6b7280',
+                                    maxRotation: 45
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // График образовательной инфраструктуры
+                const educationCtx = document.getElementById('education-chart').getContext('2d');
+                new Chart(educationCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: moscowDistricts.map(d => d.name),
+                        datasets: [{
+                            label: 'Образовательная инфраструктура',
+                            data: moscowDistricts.map(d => d.education),
+                            backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                            borderColor: 'rgba(231, 76, 60, 1)',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                ticks: {
+                                    color: '#6b7280'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#6b7280',
+                                    maxRotation: 45
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // График здравоохранения
+                const healthcareCtx = document.getElementById('healthcare-chart').getContext('2d');
+                new Chart(healthcareCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: moscowDistricts.map(d => d.name),
+                        datasets: [{
+                            label: 'Здравоохранение',
+                            data: moscowDistricts.map(d => d.healthcare),
+                            backgroundColor: 'rgba(155, 89, 182, 0.7)',
+                            borderColor: 'rgba(155, 89, 182, 1)',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                ticks: {
+                                    color: '#6b7280'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#6b7280',
+                                    maxRotation: 45
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // График жилищного фонда
+                const housingCtx = document.getElementById('housing-chart').getContext('2d');
+                new Chart(housingCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: moscowDistricts.map(d => d.name),
+                        datasets: [{
+                            label: 'Жилищный фонд',
+                            data: moscowDistricts.map(d => d.housing),
+                            backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                            borderColor: 'rgba(46, 204, 113, 1)',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                ticks: {
+                                    color: '#6b7280'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#6b7280',
+                                    maxRotation: 45
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Функция для обновления графика района
+            function updateDistrictChart(district) {
+                const ctx = document.getElementById('district-chart').getContext('2d');
+
+                // Если уже есть график, уничтожить его
+                if (window.districtChart) {
+                    window.districtChart.destroy();
+                }
+
+                window.districtChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Транспорт', 'Образование', 'Здравоохранение', 'Жилье', 'Инфраструктура', 'Плотность'],
+                        datasets: [{
+                            label: district.name,
+                            data: [
+                                district.transport,
+                                district.education,
+                                district.healthcare,
+                                district.housing,
+                                district.infrastructure,
+                                Math.min(100, district.density / 200) // Нормализуем плотность
+                            ],
+                            backgroundColor: 'rgba(29, 93, 235, 0.2)',
+                            borderColor: 'rgba(29, 93, 235, 1)',
+                            borderWidth: 3,
+                            pointBackgroundColor: 'rgba(29, 93, 235, 1)',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 5,
+                            pointHoverRadius: 7
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    stepSize: 20
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                },
+                                angleLines: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                },
+                                pointLabels: {
+                                    color: '#6b7280',
+                                    font: {
+                                        size: 14,
+                                        weight: '600'
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#6b7280',
+                                    font: {
+                                        size: 14,
+                                        weight: '600'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Инициализация графиков при загрузке
+            setTimeout(() => {
+                updateCharts();
+
+                // Выбор первого района по умолчанию
+                if (moscowDistricts.length > 0) {
+                    districtSelect.value = moscowDistricts[0].name;
+                    districtSelect.dispatchEvent(new Event('change'));
+                }
+            }, 1000);
+
+            // Анимация для элементов
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+    </script>
+</body>
+
+</html>

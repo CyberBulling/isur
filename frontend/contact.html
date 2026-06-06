@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - ИСУР</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="images/images/logo1.svg" alt="ИСУР Логотип">
+                </div>
+                <div class="logo-text">ИСУР</div>
+            </div>
+            <nav id="mainNav">
+                <a href="index.html">Главная</a>
+                <a href="about.html">О нас</a>
+                <a href="services.html">Цифровой помощник</a>
+                <a href="analytics.html">Аналитика</a>
+                <a href="calculator.html">Инвест-калькулятор</a>
+                <a href="diffs.html">Сравнение объектов</a>
+                <a href="contact.html" class="active">Контакты</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> <span>></span> <a href="contact.html">Контакты</a>
+        </div>
+    </div>
+    
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="page-title">Свяжитесь с нами</h1>
+            <p class="page-description">Мы всегда готовы помочь вам с вопросами о нашей системе, сотрудничестве или технической поддержке. Наша команда экспертов готова ответить на все ваши вопросы.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="fade-in">
+            <h2 class="section-title">Контактная информация</h2>
+            <p class="section-subtitle text-center">Вы можете связаться с нами любым удобным способом.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Адрес</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <div class="contact-item-content">
+                            <h4>Основной офис</h4>
+                            <p>г. Москва, ул. Павла Корчагина, д. 22</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-subway"></i>
+                        <div class="contact-item-content">
+                            <h4>Метро</h4>
+                            <p>ВДНХ (5 минут пешком)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <h3><i class="fas fa-phone"></i> Телефоны</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-headset"></i>
+                        <div class="contact-item-content">
+                            <h4>Общий телефон</h4>
+                            <p>+7 (495) 123-45-67</p>
+                            <p>Пн-Пт: 9:00-18:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-life-ring"></i>
+                        <div class="contact-item-content">
+                            <h4>Техническая поддержка</h4>
+                            <p>+7 (495) 123-45-68</p>
+                            <p>support@isur.ru</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <h3><i class="fas fa-envelope"></i> Электронная почта</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-inbox"></i>
+                        <div class="contact-item-content">
+                            <h4>Общие вопросы</h4>
+                            <p>info@isur.ru</p>
+                            <p>Ответ в течение 24 часов</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div class="contact-item-content">
+                            <h4>Сотрудничество</h4>
+                            <p>partner@isur.ru</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="fade-in">
+            <div class="contact-form-card">
+                <h2 class="section-title">Форма обратной связи</h2>
+                <p class="section-subtitle">Заполните форму ниже, и мы свяжемся с вами в ближайшее время</p>
+                
+                <form id="contactForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">Имя <span class="required">*</span></label>
+                            <input type="text" id="firstName" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Фамилия <span class="required">*</span></label>
+                            <input type="text" id="lastName" placeholder="Введите вашу фамилию" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Электронная почта <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" placeholder="+7 (XXX) XXX-XX-XX">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="subject">Тема обращения <span class="required">*</span></label>
+                            <select id="subject" required>
+                                <option value="">Выберите тему</option>
+                                <option value="general">Общий вопрос</option>
+                                <option value="technical">Техническая поддержка</option>
+                                <option value="partnership">Сотрудничество</option>
+                                <option value="suggestion">Предложение по улучшению</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="message">Сообщение <span class="required">*</span></label>
+                            <textarea id="message" placeholder="Опишите ваш вопрос или предложение..." required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Отправить сообщение
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+        <section class="assistant-section fade-in">
+            <div class="assistant-content">
+                <div class="assistant-image">
+                    <img src="images/images/Component 29 (1) (1).png" alt="Робот МИМИ">
+                </div>
+                <div class="assistant-text">
+                    <h3>Нужна быстрая помощь?</h3>
+                    <p>Наш цифровой помощник МИМИ готов ответить на ваши вопросы 24/7. Получите мгновенные ответы на часто задаваемые вопросы или начните диалог для решения сложных задач.</p>
+                    <p>МИМИ может помочь с техническими вопросами, консультациями по системе и даже записаться на встречу с нашими специалистами.</p>
+                    <a href="services.html" class="btn">
+                        <i class="fas fa-comments"></i> Начать общение с МИМИ
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="faq-section">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <p class="section-subtitle text-center">Ответы на самые популярные вопросы о работе с нашей системой</p>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Как быстро вы отвечаете на сообщения?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы отвечаем на все сообщения в течение 24 часов в рабочие дни. На запросы, полученные в выходные, отвечаем в первый рабочий день. Для срочных вопросов рекомендуем использовать телефон.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Предоставляете ли вы консультации по внедрению системы?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, мы предоставляем бесплатные консультации по внедрению нашей системы для государственных учреждений и коммерческих организаций. Свяжитесь с нами, чтобы записаться на консультацию.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Как стать партнером ИСУР?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Для обсуждения условий партнерства свяжитесь с отделом сотрудничества по телефону +7 (495) 123-45-69 или напишите на partner@isur.ru. Мы открыты для новых идей и совместных проектов.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Работаете ли вы с регионами?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, мы работаем со всеми регионами России. Предоставляем удаленную поддержку, проводим онлайн-обучение и выезжаем на места для сложных внедрений.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone"></i> Телефон: +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> Email: info@isur.ru</p>
+                    <p><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Адрес</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва ул. Павла Корчагина, д. 22</p>
+                    <p><i class="fas fa-subway"></i> Метро: ВДНХ</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <p>Telegram | VK</p>
+                    <p>Подпишитесь на наши обновления</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ИСУР. Все права защищены.</p>
+                <p style="font-size: 0.75rem; margin-top: 0.5rem;">Интеллектуальная система управления развитием</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="notification info" id="notification">
+        <i class="fas fa-info-circle"></i>
+        <div id="notification-message">Уведомление</div>
+    </div>
+
+    <script src="js/script.js"></script>   
+</body>
+</html>

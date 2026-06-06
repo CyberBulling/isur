@@ -1,0 +1,31 @@
+{
+  "name": "isur-backend-server",
+  "version": "1.0.0",
+  "description": "Backend сервер для ИСУР - обработка обратной связи и API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "setup:python": "node scripts/setup-python.js",
+    "start:python": "node scripts/start-python.js",
+    "start:all": "node ./node_modules/concurrently/dist/bin/concurrently.js -k \"npm start\" \"npm run start:python\""
+  },
+  "keywords": [
+    "feedback",
+    "email",
+    "nodemailer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.22.1",
+    "http-proxy-middleware": "^3.0.5",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.0.1"
+  }
+}
