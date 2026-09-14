@@ -8,5 +8,8 @@
     "setup": "npm run install:all",
     "start": "cd backend && npm start",
     "start:backend": "cd backend && npm start"
+  },
+  "dependencies": {
+    "nodemailer": "^6.10.1"
   }
 }

@@ -573,7 +573,7 @@ function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
     
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const firstName = document.getElementById('firstName')?.value.trim();
@@ -593,12 +593,39 @@ function initContactForm() {
             return;
         }
         
-        showNotification(`Спасибо, ${firstName}! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.`, 'success');
-        this.reset();
-        
-        const formCard = document.querySelector('.contact-form-card');
-        if (formCard) {
-            window.scrollTo({ top: formCard.offsetTop - 100, behavior: 'smooth' });
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton?.textContent;
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Отправка...';
+        }
+
+        try {
+            const response = await fetch('/.netlify/functions/send-feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    phone: document.getElementById('phone')?.value.trim() || '',
+                    subject,
+                    message
+                })
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.message || 'Не удалось отправить сообщение');
+
+            showNotification(result.message, 'success');
+            this.reset();
+        } catch (error) {
+            console.error('Ошибка при отправке формы:', error);
+            showNotification(error.message, 'error');
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         }
     });
 }
