@@ -27,14 +27,14 @@
                 <div class="logo-text">ИСУР</div>
             </div>
             <nav id="mainNav">
-                <a href="index.html">Главная</a>
-                <a href="about.html">О нас</a>
-                <a href="analytics.html">Аналитика</a>
-                <a href="calculator.html">Инвест-калькулятор</a>
-                <a href="diffs.html">Сравнение объектов</a>
-                <a href="contact.html" class="active">Контакты</a>
+                <a data-analyt_rambler="click" href="index.html">Главная</a>
+                <a data-analyt_rambler="click" href="about.html">О нас</a>
+                <a data-analyt_rambler="click" href="analytics.html">Аналитика</a>
+                <a data-analyt_rambler="click" href="calculator.html">Инвест-калькулятор</a>
+                <a data-analyt_rambler="click" href="diffs.html">Сравнение объектов</a>
+                <a data-analyt_rambler="click" href="contact.html" class="active">Контакты</a>
             </nav>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button data-analyt_rambler="click" class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -42,7 +42,7 @@
 
     <div class="container">
         <div class="breadcrumbs">
-            <a href="index.html">Главная</a> <span>></span> <a href="contact.html">Контакты</a>
+            <a data-analyt_rambler="click" href="index.html">Главная</a> <span>></span> <a data-analyt_rambler="click" href="contact.html">Контакты</a>
         </div>
     </div>
     
@@ -157,7 +157,7 @@
                             <textarea id="message" placeholder="Опишите ваш вопрос или предложение..." required></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn-submit">
+                    <button data-analyt_rambler="click" type="submit" class="btn-submit">
                         <i class="fas fa-paper-plane"></i> Отправить сообщение
                     </button>
                 </form>
@@ -231,20 +231,25 @@
                     <p>Telegram | VK</p>
                     <p>Подпишитесь на наши обновления</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a data-analyt_rambler="click" href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a data-analyt_rambler="click" href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 ИСУР. Все права защищены.</p>
                 <p style="font-size: 0.75rem; margin-top: 0.5rem;">Интеллектуальная система управления развитием</p>
-                <!--LiveInternet counter--><a href="https://www.liveinternet.ru/click" target="_blank"><img id="licntA118" width="1" height="1" style="border:0" title="LiveInternet counter" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7" alt=""><img width="88" height="31" style="border:0; vertical-align:middle" title="LiveInternet: number of pageviews for 24 hours, of visitors for 24 hours and for today is shown" src="https://counter.yadro.ru/logo?14.11" alt="LiveInternet"></a><script>(function(d,s){d.getElementById("licntA118").src="https://counter.yadro.ru/hit?t14.11;r"+escape(d.referrer)+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script><!--/LiveInternet-->
+                <!--LiveInternet counter--><a data-analyt_rambler="click" href="https://www.liveinternet.ru/click" target="_blank"><img id="licntA118" width="1" height="1" style="border:0" title="LiveInternet counter" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7" alt=""><img width="88" height="31" style="border:0; vertical-align:middle" title="LiveInternet: number of pageviews for 24 hours, of visitors for 24 hours and for today is shown" src="https://counter.yadro.ru/logo?14.11" alt="LiveInternet"></a><script>(function(d,s){d.getElementById("licntA118").src="https://counter.yadro.ru/hit?t14.11;r"+escape(d.referrer)+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script><!--/LiveInternet-->
                 <!-- Top100 (Kraken) Counter -->
                 <script>
                     (function (w, d, c) {
                         (w[c] = w[c] || []).push(function () {
-                            var options = { project: 7752501, user_id: null };
+                            var options = {
+                                project: 7752501,
+                                attributes_dataset: ["analyt_rambler"],
+                                trackHashes: true,
+                                user_id: null
+                            };
                             try { w.top100Counter = new top100(options); } catch (e) { }
                         });
                         var n = d.getElementsByTagName("script")[0], s = d.createElement("script");
@@ -255,7 +260,7 @@
                     })(window, document, "_top100q");
                 </script>
                 <noscript><img src="//counter.rambler.ru/top100.cnt?pid=7752501" alt="Топ-100"></noscript>
-                <a class="top100-badge" href="https://top100.rambler.ru/" target="_blank" rel="noopener" aria-label="Рамблер Топ-100"><span>Рамблер</span><strong>ТОП-100</strong></a>
+                <a data-analyt_rambler="click" class="top100-badge" href="https://top100.rambler.ru/" target="_blank" rel="noopener" aria-label="Рамблер Топ-100"><span>Рамблер</span><strong>ТОП-100</strong></a>
                 <!-- END Top100 (Kraken) Counter -->
             </div>
         </div>

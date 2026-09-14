@@ -28,21 +28,21 @@
                 <div class="logo-text"></div>
             </div>
             <nav id="main-nav">
-                <a href="index.html">Главная</a>
-                <a href="about.html">О нас</a>
-                <a href="analytics.html">Аналитика</a>
-                <a href="calculator.html">Инвест-калькулятор</a>
-                <a href="diffs.html" class="active">Сравнение объектов</a>
-                <a href="contact.html">Контакты</a>
+                <a data-analyt_rambler="click" href="index.html">Главная</a>
+                <a data-analyt_rambler="click" href="about.html">О нас</a>
+                <a data-analyt_rambler="click" href="analytics.html">Аналитика</a>
+                <a data-analyt_rambler="click" href="calculator.html">Инвест-калькулятор</a>
+                <a data-analyt_rambler="click" href="diffs.html" class="active">Сравнение объектов</a>
+                <a data-analyt_rambler="click" href="contact.html">Контакты</a>
             </nav>
             
-            <button class="mobile-menu-btn" id="menu-toggle">☰</button>
+            <button data-analyt_rambler="click" class="mobile-menu-btn" id="menu-toggle">☰</button>
         </div>
     </header>
 
     <div class="container">
         <div class="breadcrumbs">
-            <a href="index.html">Главная</a> > <a href="analytics.html">Аналитика</a> > <span>Сравнение объектов</span>
+            <a data-analyt_rambler="click" href="index.html">Главная</a> > <a data-analyt_rambler="click" href="analytics.html">Аналитика</a> > <span>Сравнение объектов</span>
         </div>
 
         <div class="page-header">
@@ -87,7 +87,7 @@
                         <span class="limit-info" style="font-size: 14px; color: var(--gray); margin-right: 15px;">
                             Лимит: <strong id="limit-count">5</strong> объектов
                         </span>
-                        <button class="clear-all-btn" id="clear-all-btn">
+                        <button data-analyt_rambler="click" class="clear-all-btn" id="clear-all-btn">
                             <i class="fas fa-trash"></i> Очистить все
                         </button>
                     </div>
@@ -104,7 +104,7 @@
                     <p style="display: flex; align-items: center; gap: 10px; justify-content: center;">
                         <i class="fas fa-info-circle" style="color: var(--gray-slightly-light);"></i> <span style="color: var(--gray-slightly-light);">Максимальное количество объектов для сравнения: 5</span>
                     </p>
-                    <a href="analytics.html" class="btn">
+                    <a data-analyt_rambler="click" href="analytics.html" class="btn">
                         <i class="fas fa-map-marked-alt"></i> Перейти к аналитике
                     </a>
                 </div>
@@ -167,19 +167,24 @@
                     <p>Telegram | VK</p>
                     <p>Подпишитесь на наши обновления</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a data-analyt_rambler="click" href="#"><i class="fab fa-telegram"></i></a>
+                        <a data-analyt_rambler="click" href="#"><i class="fab fa-vk"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 ИСУР. Все права защищены.</p>
-                <!--LiveInternet counter--><a href="https://www.liveinternet.ru/click" target="_blank"><img id="licntA118" width="1" height="1" style="border:0" title="LiveInternet counter" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7" alt=""><img width="88" height="31" style="border:0; vertical-align:middle" title="LiveInternet: number of pageviews for 24 hours, of visitors for 24 hours and for today is shown" src="https://counter.yadro.ru/logo?14.11" alt="LiveInternet"></a><script>(function(d,s){d.getElementById("licntA118").src="https://counter.yadro.ru/hit?t14.11;r"+escape(d.referrer)+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script><!--/LiveInternet-->
+                <!--LiveInternet counter--><a data-analyt_rambler="click" href="https://www.liveinternet.ru/click" target="_blank"><img id="licntA118" width="1" height="1" style="border:0" title="LiveInternet counter" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7" alt=""><img width="88" height="31" style="border:0; vertical-align:middle" title="LiveInternet: number of pageviews for 24 hours, of visitors for 24 hours and for today is shown" src="https://counter.yadro.ru/logo?14.11" alt="LiveInternet"></a><script>(function(d,s){d.getElementById("licntA118").src="https://counter.yadro.ru/hit?t14.11;r"+escape(d.referrer)+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script><!--/LiveInternet-->
                 <!-- Top100 (Kraken) Counter -->
                 <script>
                     (function (w, d, c) {
                         (w[c] = w[c] || []).push(function () {
-                            var options = { project: 7752501, user_id: null };
+                            var options = {
+                                project: 7752501,
+                                attributes_dataset: ["analyt_rambler"],
+                                trackHashes: true,
+                                user_id: null
+                            };
                             try { w.top100Counter = new top100(options); } catch (e) { }
                         });
                         var n = d.getElementsByTagName("script")[0], s = d.createElement("script");
@@ -190,7 +195,7 @@
                     })(window, document, "_top100q");
                 </script>
                 <noscript><img src="//counter.rambler.ru/top100.cnt?pid=7752501" alt="Топ-100"></noscript>
-                <a class="top100-badge" href="https://top100.rambler.ru/" target="_blank" rel="noopener" aria-label="Рамблер Топ-100"><span>Рамблер</span><strong>ТОП-100</strong></a>
+                <a data-analyt_rambler="click" class="top100-badge" href="https://top100.rambler.ru/" target="_blank" rel="noopener" aria-label="Рамблер Топ-100"><span>Рамблер</span><strong>ТОП-100</strong></a>
                 <!-- END Top100 (Kraken) Counter -->
             </div>
         </div>
