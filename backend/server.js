@@ -412,7 +412,7 @@ app.use(express.static(path.join(__dirname, '..', 'frontend'), {
 }));
 
 // SPA-like routing для фронтенда
-const frontendPaths = ['/', '/index', '/about', '/services', '/analytics', '/contact', '/diffs'];
+const frontendPaths = ['/', '/index', '/about', '/analytics', '/contact', '/diffs'];
 frontendPaths.forEach(route => {
   app.get(route, (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
@@ -669,7 +669,6 @@ const startServer = async (port = DEFAULT_PORT, attempts = 0) => {
       console.log(`   📊 Аналитика: http://localhost:${actualPort}/analytics.html`);
       console.log(`   ⚖️ Сравнение: http://localhost:${actualPort}/diffs.html`);
       console.log(`   📝 О нас: http://localhost:${actualPort}/about.html`);
-      console.log(`   🤖 Цифровой помощник: http://localhost:${actualPort}/services.html`);
       console.log(`   📞 Контакты: http://localhost:${actualPort}/contact.html`);
       console.log('\n🔧 API ЭНДПОИНТЫ:');
       console.log(`   📧 Обратная связь: http://localhost:${actualPort}/api/send-feedback`);

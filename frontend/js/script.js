@@ -5,12 +5,10 @@
 const searchData = [
     { title: "Главная страница", description: "Начните с главной страницы системы ИСУР", url: "index.html", icon: "fas fa-home" },
     { title: "О нас", description: "Узнайте о нашей миссии и команде", url: "about.html", icon: "fas fa-info-circle" },
-    { title: "Цифровой помощник", description: "Общайтесь с роботом МИМИ", url: "services.html", icon: "fas fa-robot" },
     { title: "Аналитика Москвы", description: "Интерактивные карты и данные", url: "analytics.html", icon: "fas fa-chart-line" },
     { title: "Контакты", description: "Свяжитесь с нашей командой", url: "contact.html", icon: "fas fa-envelope" },
     { title: "Городская инфраструктура", description: "Анализ развития городов", url: "analytics.html#infrastructure", icon: "fas fa-city" },
     { title: "Устойчивое развитие", description: "Экологические решения", url: "about.html#values", icon: "fas fa-seedling" },
-    { title: "Технологии ИИ", description: "Наши инновационные решения", url: "services.html#ai", icon: "fas fa-brain" },
     { title: "Транспортная доступность", description: "Отчеты по районам", url: "analytics.html#transport", icon: "fas fa-bus" },
     { title: "Социальные объекты", description: "Школы, больницы, сады", url: "analytics.html#social", icon: "fas fa-hospital" }
 ];
@@ -220,11 +218,6 @@ function highlightActiveNavLink() {
             link.classList.remove('active');
         }
     });
-}
-
-// Переход в чат с МИМИ
-function goToChat() {
-    window.location.href = 'services.html';
 }
 
 // ========== ФУНКЦИИ ДЛЯ СТРАНИЦЫ ANALYTICS.HTML ==========
@@ -573,101 +566,6 @@ function getLayerByType(type) {
     }
 }
 
-// ========== ФУНКЦИИ ДЛЯ СТРАНИЦЫ SERVICES.HTML ==========
-
-let messageInput, chatMessages, sendButton;
-
-// Отправка сообщения в чат
-function sendMessage() {
-    if (!messageInput || !chatMessages) {
-        messageInput = document.getElementById('messageInput');
-        chatMessages = document.getElementById('chatMessages');
-        if (!messageInput || !chatMessages) return;
-    }
-    
-    const message = messageInput.value.trim();
-    if (message === '') return;
-    
-    if (sendButton) {
-        sendButton.style.transform = 'scale(0.9)';
-        setTimeout(() => { if (sendButton) sendButton.style.transform = ''; }, 200);
-    }
-    
-    addMessage(message, 'user');
-    messageInput.value = '';
-    
-    setTimeout(() => {
-        const botResponse = generateBotResponse(message);
-        addMessage(botResponse, 'bot');
-    }, 500);
-}
-
-// Добавление сообщения в чат
-function addMessage(text, sender) {
-    if (!chatMessages) {
-        chatMessages = document.getElementById('chatMessages');
-        if (!chatMessages) return;
-    }
-    
-    const messageElement = document.createElement('div');
-    messageElement.className = `message ${sender}`;
-    
-    const time = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-    
-    messageElement.innerHTML = `
-        <div>${text}</div>
-        <div class="message-time">${time}</div>
-    `;
-    
-    chatMessages.appendChild(messageElement);
-    chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
-}
-
-// Генерация ответа бота
-function generateBotResponse(userMessage) {
-    const lowerMessage = userMessage.toLowerCase();
-    
-    if (lowerMessage.includes('привет') || lowerMessage.includes('здравствуй') || lowerMessage.includes('добрый')) {
-        return 'Привет! Рад вас видеть. Я робот МИМИ, ваш цифровой помощник в системе ИСУР. Чем могу помочь?';
-    } else if (lowerMessage.includes('отчет') || lowerMessage.includes('анализ') || lowerMessage.includes('статистика')) {
-        return 'Я могу помочь вам создать подробный отчет по городской инфраструктуре. Уточните, какие именно данные вас интересуют: транспорт, жилье, экология или другие параметры?';
-    } else if (lowerMessage.includes('помощь') || lowerMessage.includes('help') || lowerMessage.includes('возможности')) {
-        return 'Я могу помочь с анализом данных, созданием отчетов, ответами на вопросы о городской инфраструктуре, прогнозированием развития и генерацией рекомендаций. Что именно вас интересует?';
-    } else if (lowerMessage.includes('транспорт') || lowerMessage.includes('маршрут') || lowerMessage.includes('дорога')) {
-        return 'У меня есть обширные данные о транспортной инфраструктуре Москвы. Могу предоставить анализ пассажиропотока, оптимальные маршруты, данные о пробках или предложить решения по улучшению транспортной сети.';
-    } else if (lowerMessage.includes('жилье') || lowerMessage.includes('недвижимость') || lowerMessage.includes('квартира')) {
-        return 'Могу проанализировать данные о жилой недвижимости: стоимость квадратного метра в разных районах, доступность жилья, качество инфраструктуры, динамику цен и прогнозы развития рынка.';
-    } else if (lowerMessage.includes('экология') || lowerMessage.includes('воздух') || lowerMessage.includes('зелень')) {
-        return 'Есть данные о качестве воздуха, уровне шума, озеленении и других экологических параметрах в разных районах города. Могу предоставить анализ и рекомендации по улучшению экологической ситуации.';
-    } else {
-        return 'Интересный вопрос! Я специализируюсь на анализе городской инфраструктуры и данных. Могу помочь с информацией о транспорте, жилье, экологии, социальной инфраструктуре или другими аспектами городского развития. Уточните, пожалуйста, что именно вас интересует?';
-    }
-}
-
-// Быстрые действия в чате
-function quickAction(action) {
-    if (!messageInput) {
-        messageInput = document.getElementById('messageInput');
-        if (!messageInput) return;
-    }
-    
-    let message = '';
-    switch(action) {
-        case 'report':
-            message = 'Создать отчет по городской инфраструктуре за последний квартал';
-            break;
-        case 'analyze':
-            message = 'Проанализировать данные о транспортной доступности в центральном округе';
-            break;
-        case 'help':
-            message = 'Какие возможности у помощника МИМИ?';
-            break;
-    }
-    
-    messageInput.value = message;
-    messageInput.focus();
-}
-
 // ========== ФУНКЦИИ ДЛЯ СТРАНИЦЫ CONTACT.HTML ==========
 
 // Обработка отправки формы обратной связи
@@ -726,7 +624,7 @@ function initFaq() {
 
 // ========== ФУНКЦИИ ДЛЯ СТРАНИЦЫ 404.HTML ==========
 
-let errorNumber, robotMimi, neuralNetwork, particles;
+let errorNumber, neuralNetwork, particles;
 
 // Создание нейронной сети
 function createNeuralNetwork() {
@@ -767,27 +665,6 @@ function createParticles() {
 // Инициализация анимации 404 страницы
 function init404Page() {
     errorNumber = document.getElementById('errorNumber');
-    robotMimi = document.getElementById('robotMimi');
-    
-    if (robotMimi) {
-        robotMimi.addEventListener('click', () => {
-            robotMimi.style.animation = 'none';
-            setTimeout(() => {
-                robotMimi.style.animation = 'robotFloat 4s ease-in-out infinite, robotGlow 3s ease-in-out infinite alternate';
-            }, 10);
-            
-            const speech = document.querySelector('.robot-speech');
-            if (speech) {
-                const messages = ['Помогу найти нужную информацию!', 'Давайте исследовать вместе!', 'Готов помочь!'];
-                speech.textContent = messages[Math.floor(Math.random() * messages.length)];
-                speech.style.animation = 'none';
-                setTimeout(() => {
-                    speech.style.animation = 'speechBubble 8s ease-in-out infinite';
-                }, 10);
-            }
-        });
-    }
-    
     if (errorNumber) {
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
@@ -876,32 +753,6 @@ document.addEventListener('DOMContentLoaded', () => {
         initLineChart();
         initBarChart();
         setTimeout(() => loadMapData(), 500);
-    }
-    
-    // Инициализация страницы цифрового помощника
-    if (document.querySelector('.chat-window')) {
-        messageInput = document.getElementById('messageInput');
-        chatMessages = document.getElementById('chatMessages');
-        sendButton = document.getElementById('sendButton');
-        
-        if (sendButton) sendButton.addEventListener('click', sendMessage);
-        if (messageInput) messageInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
-        
-        window.sendMessage = sendMessage;
-        window.quickAction = quickAction;
-        
-        setTimeout(() => {
-            const welcomeMessages = [
-                "Я могу помочь вам с анализом городских данных, созданием отчетов и ответами на вопросы.",
-                "Просто напишите мне о том, что вас интересует!",
-                "Вы также можете использовать быстрые действия для получения часто запрашиваемой информации."
-            ];
-            welcomeMessages.forEach((msg, index) => {
-                setTimeout(() => addMessage(msg, 'bot'), index * 800);
-            });
-        }, 1500);
-        
-        if (messageInput) messageInput.focus();
     }
     
     // Инициализация страницы контактов

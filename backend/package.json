@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "setup:python": "node scripts/setup-python.js",
-    "start:python": "node scripts/start-python.js",
-    "start:all": "node ./node_modules/concurrently/dist/bin/concurrently.js -k \"npm start\" \"npm run start:python\""
+    "start:all": "npm start"
   },
   "keywords": [
     "feedback",
@@ -21,11 +19,9 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^4.22.1",
-    "http-proxy-middleware": "^3.0.5",
     "nodemailer": "^6.10.1"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1",
     "nodemon": "^3.0.1"
   }
 }
