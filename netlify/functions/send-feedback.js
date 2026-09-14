@@ -1,4 +1,7 @@
 const nodemailer = require('nodemailer');
+const feedbackRecipient = process.env.FEEDBACK_RECIPIENT || 'zumozumo03082005@gmail.com';
+const smtpUser = process.env.GMAIL_USER;
+const smtpPassword = process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_PASSWORD;
 
 const jsonResponse = (statusCode, body) => ({
   statusCode,
@@ -44,16 +47,16 @@ exports.handler = async (event) => {
     return jsonResponse(400, { message: 'Некорректный email адрес' });
   }
 
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.error('GMAIL_USER и GMAIL_APP_PASSWORD не настроены в Netlify');
+  if (!smtpUser || !smtpPassword) {
+    console.error('GMAIL_USER и GMAIL_APP_PASSWORD (или GMAIL_PASSWORD) не настроены в Netlify');
     return jsonResponse(500, { message: 'Сервис отправки сообщений не настроен' });
   }
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD
+      user: smtpUser,
+      pass: smtpPassword
     }
   });
 
@@ -66,8 +69,8 @@ exports.handler = async (event) => {
 
   try {
     await transporter.sendMail({
-      from: `"Сайт ИСУР" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER,
+      from: `"Сайт ИСУР" <${smtpUser}>`,
+      to: feedbackRecipient,
       replyTo: email,
       subject: `Сообщение с сайта: ${subject} от ${lastName} ${firstName}`,
       text: [
