@@ -10,6 +10,6 @@
     "start:backend": "cd backend && npm start"
   },
   "dependencies": {
-    "nodemailer": "^6.10.1"
+    "nodemailer": "^10.1.1"
   }
 }

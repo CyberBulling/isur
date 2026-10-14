@@ -2,6 +2,15 @@
   publish = "frontend"
   functions = "netlify/functions"
 
+[build.environment]
+  NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/api/send-feedback"
+  to = "/.netlify/functions/send-feedback"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/"
   to = "/index.html"

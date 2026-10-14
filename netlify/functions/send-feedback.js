@@ -20,6 +20,29 @@ const escapeHtml = (value) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
+const getMailFailure = (error) => {
+  const responseCode = Number(error?.responseCode);
+
+  if (error?.code === 'EAUTH' || responseCode === 534 || responseCode === 535) {
+    return {
+      statusCode: 503,
+      message: 'Не удалось войти в Gmail. Проверьте GMAIL_USER и пароль приложения Gmail в настройках Netlify.'
+    };
+  }
+
+  if (['ETIMEDOUT', 'ECONNECTION', 'ESOCKET', 'EHOSTUNREACH', 'ENETUNREACH'].includes(error?.code)) {
+    return {
+      statusCode: 503,
+      message: 'Нет соединения с почтовым сервером. Проверьте настройки SMTP и повторите попытку.'
+    };
+  }
+
+  return {
+    statusCode: 502,
+    message: 'Почтовый сервер отклонил отправку. Проверьте настройки Gmail в Netlify.'
+  };
+};
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return jsonResponse(405, { message: 'Метод не поддерживается' });
@@ -49,7 +72,9 @@ exports.handler = async (event) => {
 
   if (!smtpUser || !smtpPassword) {
     console.error('GMAIL_USER и GMAIL_APP_PASSWORD (или GMAIL_PASSWORD) не настроены в Netlify');
-    return jsonResponse(500, { message: 'Сервис отправки сообщений не настроен' });
+    return jsonResponse(503, {
+      message: 'Сервис отправки не настроен: проверьте GMAIL_USER и GMAIL_APP_PASSWORD в Netlify.'
+    });
   }
 
   const transporter = nodemailer.createTransport({
@@ -97,7 +122,12 @@ exports.handler = async (event) => {
 
     return jsonResponse(200, { message: 'Сообщение отправлено успешно!' });
   } catch (error) {
-    console.error('Ошибка при отправке сообщения:', error);
-    return jsonResponse(500, { message: 'Ошибка при отправке сообщения' });
+    console.error('Ошибка SMTP при отправке обратной связи:', {
+      code: error?.code,
+      responseCode: error?.responseCode,
+      command: error?.command
+    });
+    const failure = getMailFailure(error);
+    return jsonResponse(failure.statusCode, { message: failure.message });
   }
 };
