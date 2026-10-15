@@ -333,6 +333,7 @@ function addToComparison(objectData) {
 
     // Сохраняем в localStorage
     localStorage.setItem(storageKey, JSON.stringify(buildings));
+    window.trackIsurAnalyticsEvent('building_added_to_comparison');
 
     // Обновляем счетчик в навигации
     updateComparisonCounter();

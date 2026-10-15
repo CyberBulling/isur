@@ -284,6 +284,7 @@
         document.getElementById('investmentForm').addEventListener('submit', event => {
             event.preventDefault();
             render(calculate());
+            window.trackIsurAnalyticsEvent('investment_forecast_calculated');
             document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
 

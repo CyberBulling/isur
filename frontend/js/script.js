@@ -617,6 +617,7 @@ function initContactForm() {
             if (!response.ok) throw new Error(result.message || 'Не удалось отправить сообщение');
 
             showNotification(result.message, 'success');
+            window.trackIsurAnalyticsEvent('feedback_submitted');
             if (typeof ym === 'function') {
                 ym(112584551, 'reachGoal', 'feedback_submit');
             }
